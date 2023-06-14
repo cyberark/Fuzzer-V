@@ -1,0 +1,86 @@
+;
+; HyperVAgent.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=Sample ; TODO: edit Class
+ClassGuid={78A1C341-4539-11d3-B88D-00C04FAD5171} ; TODO: edit ClassGuid
+Provider=%ManufacturerName%
+CatalogFile=HyperVAgent.cat
+DriverVer= ; TODO: set DriverVer in stampinf property pages
+
+[DestinationDirs]
+DefaultDestDir = 12
+HyperVAgent_Device_CoInstaller_CopyFiles = 11
+
+; ================= Class section =====================
+
+[ClassInstall32]
+Addreg=SampleClassReg
+
+[SampleClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-5
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+HyperVAgent.sys  = 1,,
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll=1 ; make sure the number matches with SourceDisksNames
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NT$ARCH$
+
+[Standard.NT$ARCH$]
+%HyperVAgent.DeviceDesc%=HyperVAgent_Device, Root\HyperVAgent ; TODO: edit hw-id
+
+[HyperVAgent_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+HyperVAgent.sys
+
+;-------------- Service installation
+[HyperVAgent_Device.NT.Services]
+AddService = HyperVAgent,%SPSVCINST_ASSOCSERVICE%, HyperVAgent_Service_Inst
+
+; -------------- HyperVAgent driver install sections
+[HyperVAgent_Service_Inst]
+DisplayName    = %HyperVAgent.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\HyperVAgent.sys
+
+;
+;--- HyperVAgent_Device Coinstaller installation ------
+;
+
+[HyperVAgent_Device.NT.CoInstallers]
+AddReg=HyperVAgent_Device_CoInstaller_AddReg
+CopyFiles=HyperVAgent_Device_CoInstaller_CopyFiles
+
+[HyperVAgent_Device_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll,WdfCoInstaller"
+
+[HyperVAgent_Device_CoInstaller_CopyFiles]
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll
+
+[HyperVAgent_Device.NT.Wdf]
+KmdfService =  HyperVAgent, HyperVAgent_wdfsect
+[HyperVAgent_wdfsect]
+KmdfLibraryVersion = $KMDFVERSION$
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+ClassName="Samples" ; TODO: edit ClassName
+DiskName = "HyperVAgent Installation Disk"
+HyperVAgent.DeviceDesc = "HyperVAgent Device"
+HyperVAgent.SVCDESC = "HyperVAgent Service"
