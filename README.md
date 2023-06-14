@@ -34,8 +34,15 @@ Nested virtualization: physical ubuntu machine running (L0) running a QEMU Windo
 - receiving IOCTLs from PSAgent.
 - triggering code in L1 kernel (e.g. by VMBUS, port io).
 
-# Results
 
 
 # Variations
-The fuzzer can be adapted to target the Hyper-V components of the guest machine, possibly leading to privilege escalation on Hyper-V VMs. 
+The fuzzer can be adapted to target the Hyper-V components of the guest machine, possibly leading to privilege escalation on Hyper-V VMs.
+
+# License
+Copyright (c) 2023 CyberArk Software Ltd. All rights reserved  
+This repository is licensed under  Apache-2.0 License - see [`LICENSE`](LICENSE) for more details.
+
+
+# References:
+For more comments, suggestions or questions, you can contact Or Ben Porath ([@OrBenPorath](https://twitter.com/OrBenPorath)) and CyberArk Labs.
