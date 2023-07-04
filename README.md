@@ -1,4 +1,4 @@
-# HyperVFuzzer
+# Fuzzer-V
 
 A [kafl](https://github.com/RUB-SysSec/kAFL) based fuzzer for the kernel components of Hyper-V.
 
@@ -45,4 +45,4 @@ This repository is licensed under  Apache-2.0 License - see [`LICENSE`](LICENSE)
 
 
 # References:
-For more comments, suggestions or questions, you can contact Or Ben Porath ([@OrBenPorath](https://twitter.com/OrBenPorath)) and CyberArk Labs.
+For more comments, suggestions, or questions, you can contact Or Ben Porath ([@OrBenPorath](https://twitter.com/OrBenPorath)) and CyberArk Labs.
