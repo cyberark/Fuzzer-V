@@ -45,4 +45,4 @@ This repository is licensed under  Apache-2.0 License - see [`LICENSE`](LICENSE)
 
 
 # References:
-For more comments, suggestions, or questions, you can contact Or Ben Porath ([@OrBenPorath](https://twitter.com/OrBenPorath)) and CyberArk Labs.
+For more comments, suggestions, or questions, you can contact Or Ben Porath ([@OrBenPorath](https://twitter.com/OrBenPorath)) and CyberArk Labs ([@CyberArkLabs](https://twitter.com/CyberarkLabs)).
